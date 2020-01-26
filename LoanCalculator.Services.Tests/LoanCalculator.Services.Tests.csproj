@@ -16,4 +16,41 @@
     <ProjectReference Include="..\LoanCalculator.Model\LoanCalculator.Model.csproj" />
     <ProjectReference Include="..\LoanCalculator.Services\LoanCalculator.Services.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="LoanCalculator.Web.Tests\obj\LoanCalculator.Web.Tests.csproj.nuget.dgspec.json" />
+    <None Remove="LoanCalculator.Web.Tests\obj\LoanCalculator.Web.Tests.csproj.nuget.g.targets" />
+    <None Remove="LoanCalculator.Web.Tests\obj\LoanCalculator.Web.Tests.csproj.nuget.g.props" />
+    <None Remove="LoanCalculator.Web.Tests\obj\project.assets.json" />
+    <None Remove="LoanCalculator.Web.Tests\obj\LoanCalculator.Web.Tests.csproj.nuget.cache" />
+    <None Remove="LoanCalculator.Web.Tests\bin\Debug\netcoreapp2.2\appsettings.Development.json" />
+    <None Remove="LoanCalculator.Web.Tests\bin\Debug\netcoreapp2.2\appsettings.json" />
+    <None Remove="LoanCalculator.Web.Tests\obj\Debug\netcoreapp2.2\LoanCalculator.Web.Tests.assets.cache" />
+    <None Remove="LoanCalculator.Web.Tests\obj\Debug\netcoreapp2.2\LoanCalculator.Web.Tests.csproj.FileListAbsolute.txt" />
+    <None Remove="LoanCalculator.Web.Tests\obj\Debug\netcoreapp2.2\LoanCalculator.Web.Tests.csprojAssemblyReference.cache" />
+    <None Remove="LoanCalculator.Web.Tests\obj\Debug\netcoreapp2.2\LoanCalculator.Web.Tests.AssemblyInfoInputs.cache" />
+    <None Remove="LoanCalculator.Web.Tests\obj\Debug\netcoreapp2.2\LoanCalculator.Web.Tests.pdb" />
+    <None Remove="LoanCalculator.Web.Tests\obj\Debug\netcoreapp2.2\LoanCalculator.Web.Tests.dll" />
+    <None Remove="LoanCalculator.Web.Tests\bin\Debug\netcoreapp2.2\LoanCalculator.Services.pdb" />
+    <None Remove="LoanCalculator.Web.Tests\bin\Debug\netcoreapp2.2\LoanCalculator.Model.pdb" />
+    <None Remove="LoanCalculator.Web.Tests\bin\Debug\netcoreapp2.2\LoanCalculator.Services.dll" />
+    <None Remove="LoanCalculator.Web.Tests\bin\Debug\netcoreapp2.2\LoanCalculator.Web.dll" />
+    <None Remove="LoanCalculator.Web.Tests\bin\Debug\netcoreapp2.2\LoanCalculator.Web.pdb" />
+    <None Remove="LoanCalculator.Web.Tests\obj\Debug\netcoreapp2.2\LoanCalculator.Web.Tests.csproj.CopyComplete" />
+    <None Remove="LoanCalculator.Web.Tests\bin\Debug\netcoreapp2.2\LoanCalculator.Web.Views.pdb" />
+    <None Remove="LoanCalculator.Web.Tests\bin\Debug\netcoreapp2.2\Properties\launchSettings.json" />
+    <None Remove="LoanCalculator.Web.Tests\bin\Debug\netcoreapp2.2\LoanCalculator.Web.Views.dll" />
+    <None Remove="LoanCalculator.Web.Tests\bin\Debug\netcoreapp2.2\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll" />
+    <None Remove="LoanCalculator.Web.Tests\bin\Debug\netcoreapp2.2\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll" />
+    <None Remove="LoanCalculator.Web.Tests\bin\Debug\netcoreapp2.2\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll" />
+    <None Remove="LoanCalculator.Web.Tests\bin\Debug\netcoreapp2.2\LoanCalculator.Web.Tests.deps.json" />
+    <None Remove="LoanCalculator.Web.Tests\bin\Debug\netcoreapp2.2\LoanCalculator.Web.Tests.dll" />
+    <None Remove="LoanCalculator.Web.Tests\bin\Debug\netcoreapp2.2\LoanCalculator.Web.Tests.runtimeconfig.json" />
+    <None Remove="LoanCalculator.Web.Tests\bin\Debug\netcoreapp2.2\LoanCalculator.Web.Tests.runtimeconfig.dev.json" />
+    <None Remove="LoanCalculator.Web.Tests\bin\Debug\netcoreapp2.2\LoanCalculator.Web.Tests.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="LoanCalculator.Web.Tests\obj\Debug\netcoreapp2.2\LoanCalculator.Web.Tests.Program.cs" />
+    <Compile Remove="LoanCalculator.Web.Tests\LoanNoFeeCalculatorControllerTests.cs" />
+    <Compile Remove="LoanCalculator.Web.Tests\obj\Debug\netcoreapp2.2\LoanCalculator.Web.Tests.AssemblyInfo.cs" />
+  </ItemGroup>
 </Project>

@@ -16,7 +16,7 @@ namespace LoanCalculator.Web.Controllers
     {
         // GET: api/values
         private readonly ILoanNoFeeService _service;
-        protected readonly IOptions<Settings> _settings;
+        private readonly IOptions<Settings> _settings;
 
         public LoanNoFeeCalculatorController(ILoanNoFeeService service, IOptions<Settings> settings)
         {
@@ -26,14 +26,14 @@ namespace LoanCalculator.Web.Controllers
 
 
         [HttpPost]
-        public async Task<LoanDetails> Post([FromBody]LoanSummary loanSummary)
+        public async Task<ActionResult<LoanDetails>> Post([FromBody]LoanSummary loanSummary)
         {
             loanSummary.ArrangmentFee = Convert.ToDecimal(_settings.Value.ArrangementFee);
             loanSummary.CompletionFee = Convert.ToDecimal(_settings.Value.CompletionFee);
 
             var loanDetails = await _service.CalculateLoan(loanSummary);
 
-            return loanDetails;
+            return Ok(loanDetails);
         }
     }
 }
