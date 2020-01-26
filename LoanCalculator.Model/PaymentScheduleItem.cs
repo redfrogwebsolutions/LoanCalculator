@@ -3,8 +3,7 @@ namespace LoanCalculator.Model
 {
     public class PaymentScheduleItem
     {
-        public PaymentScheduleItem()
-        {
-        }
+        public DateTime PaymentDate;
+        public decimal PaymentAmount;
     }
 }

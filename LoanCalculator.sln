@@ -3,6 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanCalculator.Web", "LoanCalculator.Web\LoanCalculator.Web.csproj", "{AF23AF3E-6571-4E23-835F-8E677A387529}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanCalculator.Model", "LoanCalculator.Model\LoanCalculator.Model.csproj", "{09EE7859-1609-402B-94BE-2B8F987912BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanCalculator.Services", "LoanCalculator.Services\LoanCalculator.Services.csproj", "{05E4059E-4A4F-4814-AA7C-569BC743161C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A217CC2A-6821-4DB6-85DB-0D2399877409}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanCalculator.Services.Tests", "LoanCalculator.Services.Tests\LoanCalculator.Services.Tests.csproj", "{2775E761-286F-4346-915A-407D08505085}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,5 +21,20 @@ Global
 		{AF23AF3E-6571-4E23-835F-8E677A387529}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF23AF3E-6571-4E23-835F-8E677A387529}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF23AF3E-6571-4E23-835F-8E677A387529}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09EE7859-1609-402B-94BE-2B8F987912BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09EE7859-1609-402B-94BE-2B8F987912BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09EE7859-1609-402B-94BE-2B8F987912BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09EE7859-1609-402B-94BE-2B8F987912BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05E4059E-4A4F-4814-AA7C-569BC743161C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05E4059E-4A4F-4814-AA7C-569BC743161C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05E4059E-4A4F-4814-AA7C-569BC743161C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05E4059E-4A4F-4814-AA7C-569BC743161C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2775E761-286F-4346-915A-407D08505085}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2775E761-286F-4346-915A-407D08505085}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2775E761-286F-4346-915A-407D08505085}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2775E761-286F-4346-915A-407D08505085}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2775E761-286F-4346-915A-407D08505085} = {A217CC2A-6821-4DB6-85DB-0D2399877409}
 	EndGlobalSection
 EndGlobal

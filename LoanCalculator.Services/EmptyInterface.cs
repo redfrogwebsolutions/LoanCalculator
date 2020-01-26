@@ -1,7 +1,11 @@
-﻿using System;
+﻿using System.Threading.Tasks;
+using LoanCalculator.Model;
+
 namespace LoanCalculator.Services
 {
-    public interface EmptyInterface
+    public interface ILoanNoFeeService
     {
+        Task<LoanDetails> CalculateLoan(LoanSummary requestSummary);
+
     }
 }

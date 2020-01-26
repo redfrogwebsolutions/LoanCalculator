@@ -1,3 +1,4 @@
+using LoanCalculator.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,6 +28,7 @@ namespace LoanCalculator.Web
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+            ConfigureDependencyInjection(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,6 +68,12 @@ namespace LoanCalculator.Web
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+        }
+
+        private void ConfigureDependencyInjection(IServiceCollection services)
+        {
+            services.AddSingleton<ILoanNoFeeService, LoanNoFeeService>();
+
         }
     }
 }
