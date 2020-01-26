@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using LoanCalculator.Model;
 using LoanCalculator.Services;
+using Microsoft.Extensions.Options;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,20 +16,23 @@ namespace LoanCalculator.Web.Controllers
     {
         // GET: api/values
         private readonly ILoanNoFeeService _service;
+        protected readonly IOptions<Settings> _settings;
 
-        public LoanNoFeeCalculatorController(ILoanNoFeeService service)
+        public LoanNoFeeCalculatorController(ILoanNoFeeService service, IOptions<Settings> settings)
         {
             _service = service;
+            _settings = settings;
         }
 
 
         [HttpPost]
         public async Task<LoanDetails> Post([FromBody]LoanSummary loanSummary)
         {
-            //var summary = JsonConvert.DeserializeObject<LoanSummary>(loanSummary.ToString());
+            loanSummary.ArrangmentFee = Convert.ToDecimal(_settings.Value.ArrangementFee);
+            loanSummary.CompletionFee = Convert.ToDecimal(_settings.Value.CompletionFee);
+
             var loanDetails = await _service.CalculateLoan(loanSummary);
 
-            //return JsonConvert.SerializeObject(loanDetails);
             return loanDetails;
         }
     }

@@ -3,6 +3,6 @@ export interface LoanSummary {
     loanLenght: number;
     arrangmentFee: number;
     completionFee: number;
-    ceposit: number;
+    deposit: number;
     fullPrice: number;
 }

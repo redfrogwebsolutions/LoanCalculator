@@ -1,3 +1,4 @@
+using LoanCalculator.Model;
 using LoanCalculator.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,6 +29,14 @@ namespace LoanCalculator.Web
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+            services.Configure<Settings>(options =>
+            {
+                options.ArrangementFee
+                    = Configuration.GetSection("LoanSettings:ArrangementFee").Value;
+                options.CompletionFee
+                    = Configuration.GetSection("LoanSettings:CompletionFee").Value;
+            }); 
+
             ConfigureDependencyInjection(services);
         }
 
