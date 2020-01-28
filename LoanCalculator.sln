@@ -1,15 +1,18 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanCalculator.Web", "LoanCalculator.Web\LoanCalculator.Web.csproj", "{AF23AF3E-6571-4E23-835F-8E677A387529}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29503.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoanCalculator.Web", "LoanCalculator.Web\LoanCalculator.Web.csproj", "{AF23AF3E-6571-4E23-835F-8E677A387529}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanCalculator.Model", "LoanCalculator.Model\LoanCalculator.Model.csproj", "{09EE7859-1609-402B-94BE-2B8F987912BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoanCalculator.Model", "LoanCalculator.Model\LoanCalculator.Model.csproj", "{09EE7859-1609-402B-94BE-2B8F987912BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanCalculator.Services", "LoanCalculator.Services\LoanCalculator.Services.csproj", "{05E4059E-4A4F-4814-AA7C-569BC743161C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoanCalculator.Services", "LoanCalculator.Services\LoanCalculator.Services.csproj", "{05E4059E-4A4F-4814-AA7C-569BC743161C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A217CC2A-6821-4DB6-85DB-0D2399877409}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanCalculator.Services.Tests", "LoanCalculator.Services.Tests\LoanCalculator.Services.Tests.csproj", "{2775E761-286F-4346-915A-407D08505085}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoanCalculator.Services.Tests", "LoanCalculator.Services.Tests\LoanCalculator.Services.Tests.csproj", "{2775E761-286F-4346-915A-407D08505085}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanCalculator.Web.Tests", "LoanCalculator.Web.Tests\LoanCalculator.Web.Tests.csproj", "{05DE7699-5179-4FFF-9C43-7D5AC8269FAA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,8 +36,19 @@ Global
 		{2775E761-286F-4346-915A-407D08505085}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2775E761-286F-4346-915A-407D08505085}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2775E761-286F-4346-915A-407D08505085}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05DE7699-5179-4FFF-9C43-7D5AC8269FAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05DE7699-5179-4FFF-9C43-7D5AC8269FAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05DE7699-5179-4FFF-9C43-7D5AC8269FAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05DE7699-5179-4FFF-9C43-7D5AC8269FAA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2775E761-286F-4346-915A-407D08505085} = {A217CC2A-6821-4DB6-85DB-0D2399877409}
+		{05DE7699-5179-4FFF-9C43-7D5AC8269FAA} = {A217CC2A-6821-4DB6-85DB-0D2399877409}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BC816DE4-052A-49BD-B22B-6CC2E4E10CA5}
 	EndGlobalSection
 EndGlobal

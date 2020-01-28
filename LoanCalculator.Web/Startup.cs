@@ -1,5 +1,6 @@
 using LoanCalculator.Model;
 using LoanCalculator.Services;
+using LoanCalculator.Web.MapperService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -81,7 +82,8 @@ namespace LoanCalculator.Web
 
         private void ConfigureDependencyInjection(IServiceCollection services)
         {
-            services.AddSingleton<ILoanNoFeeService, LoanNoFeeService>();
+            services.AddScoped<ILoanNoFeeService, LoanNoFeeService>();
+            services.AddSingleton<IMapper, Mapper>();
 
         }
     }
