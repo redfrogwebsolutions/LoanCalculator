@@ -34,9 +34,9 @@ namespace LoanCalculator.Web.Controllers
         {
             try
             {
-                if(loanSummary == null || !ValidateSettings())
+                if(!ValidateLoanSummaryVm(loanSummary) || !ValidateSettings() || !ModelState.IsValid)
                 {
-                   return BadRequest();
+                    throw new Exception("invalid model");
                 }
 
                 loanSummary.ArrangmentFee = Convert.ToDecimal(_settings.Value.ArrangementFee);
@@ -50,13 +50,22 @@ namespace LoanCalculator.Web.Controllers
             {
                 //ToDo: log exception
 
-                return BadRequest();
+                return BadRequest(ex);
             }
         }
 
         private bool ValidateSettings()
         {
             return (!string.IsNullOrEmpty(_settings.Value.ArrangementFee) && !string.IsNullOrEmpty(_settings.Value.CompletionFee));
+        }
+
+        private bool ValidateLoanSummaryVm(LoanSummaryVm vm)
+        {
+            var deliveryDate = new DateTime(vm.DeliveryDate.Year, vm.DeliveryDate.Month, vm.DeliveryDate.Day);
+
+            if (vm == null || deliveryDate < DateTime.Today || vm.Deposit > vm.FullPrice || vm.Deposit < (vm.FullPrice * Convert.ToDecimal(0.15)))
+                return false;
+            return true;
         }
     }
 }

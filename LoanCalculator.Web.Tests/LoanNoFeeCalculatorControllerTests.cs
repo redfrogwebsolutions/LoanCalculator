@@ -31,7 +31,27 @@ namespace LoanCalculator.Web.Tests
         }
 
         [TestMethod]
-        public void PostReturnsStatusCode200()
+        public void PostReturnsStatusCode200Test()
+        {
+            var sampleSettings = new Settings
+            {
+                ArrangementFee = "20",
+                CompletionFee = "88"
+            };
+
+            var sampleDetailsVm = GenerateLoanDetailsVmObject();
+
+            _service.Setup(x => x.CalculateLoan(It.IsAny<LoanSummary>())).ReturnsAsync(GenerateLoanDetailsObject());
+            _settings.Setup(x => x.Value).Returns(sampleSettings);
+
+            var result = _controller.Post(sampleDetailsVm.Summary).Result.Result as OkObjectResult;
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(200, result.StatusCode);
+        }
+
+        [TestMethod]
+        public void PostReturnsBadRequestIfLoanSummaryIsNullTest()
         {
             var sampleSettings = new Settings
             {
@@ -42,14 +62,119 @@ namespace LoanCalculator.Web.Tests
             _service.Setup(x => x.CalculateLoan(It.IsAny<LoanSummary>())).ReturnsAsync(GenerateLoanDetailsObject());
             _settings.Setup(x => x.Value).Returns(sampleSettings);
 
-            var result = _controller.Post(new LoanSummaryVm()).Result.Result as OkObjectResult;
+            var result = _controller.Post(null).Result.Result as BadRequestObjectResult;
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(200, result.StatusCode);
+            Assert.AreEqual(400, result.StatusCode);
         }
 
         [TestMethod]
-        public void PostReturnsExpectedObject()
+        public void PostReturnsBadRequestIfDeliveryDateIsInThePastTest()
+        {
+            var sampleSettings = new Settings
+            {
+                ArrangementFee = "20",
+                CompletionFee = "88"
+            };
+
+            var sampleDetailsVm = GenerateLoanDetailsVmObject();
+            sampleDetailsVm.Summary.DeliveryDate = DateTime.Now.AddDays(-1);
+
+            _service.Setup(x => x.CalculateLoan(It.IsAny<LoanSummary>())).ReturnsAsync(GenerateLoanDetailsObject());
+            _settings.Setup(x => x.Value).Returns(sampleSettings);
+
+            var result = _controller.Post(sampleDetailsVm.Summary).Result.Result as BadRequestObjectResult;
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(400, result.StatusCode);
+        }
+
+        [TestMethod]
+        public void PostReturnsBadRequestIfDepositIsHighrerThanVehiclePriceTest()
+        {
+            var sampleSettings = new Settings
+            {
+                ArrangementFee = "20",
+                CompletionFee = "88"
+            };
+
+            var sampleDetailsVm = GenerateLoanDetailsVmObject();
+            sampleDetailsVm.Summary.Deposit = 1000;
+            sampleDetailsVm.Summary.FullPrice = 900;
+
+            _service.Setup(x => x.CalculateLoan(It.IsAny<LoanSummary>())).ReturnsAsync(GenerateLoanDetailsObject());
+            _settings.Setup(x => x.Value).Returns(sampleSettings);
+
+            var result = _controller.Post(sampleDetailsVm.Summary).Result.Result as BadRequestObjectResult;
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(400, result.StatusCode);
+        }
+
+        [TestMethod]
+        public void PostReturnsBadRequestIfDepositIsLestThan15PercentOfVehiclePriceTest()
+        {
+            var sampleSettings = new Settings
+            {
+                ArrangementFee = "20",
+                CompletionFee = "88"
+            };
+
+            var sampleDetailsVm = GenerateLoanDetailsVmObject();
+            sampleDetailsVm.Summary.Deposit = 149;
+            sampleDetailsVm.Summary.FullPrice = 1000;
+
+            _service.Setup(x => x.CalculateLoan(It.IsAny<LoanSummary>())).ReturnsAsync(GenerateLoanDetailsObject());
+            _settings.Setup(x => x.Value).Returns(sampleSettings);
+
+            var result = _controller.Post(sampleDetailsVm.Summary).Result.Result as BadRequestObjectResult;
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(400, result.StatusCode);
+        }
+
+        [TestMethod]
+        public void PostReturnsBadRequestIfArrangmentFeeIsEmptyTest()
+        {
+            var sampleSettings = new Settings
+            {
+                ArrangementFee = "",
+                CompletionFee = "88"
+            };
+
+            var sampleDetailsVm = GenerateLoanDetailsVmObject();
+
+            _service.Setup(x => x.CalculateLoan(It.IsAny<LoanSummary>())).ReturnsAsync(GenerateLoanDetailsObject());
+            _settings.Setup(x => x.Value).Returns(sampleSettings);
+
+            var result = _controller.Post(sampleDetailsVm.Summary).Result.Result as BadRequestObjectResult;
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(400, result.StatusCode);
+        }
+
+        [TestMethod]
+        public void PostReturnsBadRequestIfCompletionFeeIsEmptyTest()
+        {
+            var sampleSettings = new Settings
+            {
+                ArrangementFee = "20",
+                CompletionFee = ""
+            };
+
+            var sampleDetailsVm = GenerateLoanDetailsVmObject();
+
+            _service.Setup(x => x.CalculateLoan(It.IsAny<LoanSummary>())).ReturnsAsync(GenerateLoanDetailsObject());
+            _settings.Setup(x => x.Value).Returns(sampleSettings);
+
+            var result = _controller.Post(sampleDetailsVm.Summary).Result.Result as BadRequestObjectResult;
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(400, result.StatusCode);
+        }
+
+        [TestMethod]
+        public void PostReturnsExpectedObjectTest()
         {
             var sampleSettings = new Settings
             {
@@ -64,7 +189,7 @@ namespace LoanCalculator.Web.Tests
             _settings.Setup(x => x.Value).Returns(sampleSettings);
             _mapper.Setup(x => x.MapConvertLoanDetailsToLoanDetailsVm(sampleDetails)).Returns(sampleDetailsVm);
 
-            var result = _controller.Post(new LoanSummaryVm()).Result.Result as OkObjectResult;
+            var result = _controller.Post(sampleDetailsVm.Summary).Result.Result as OkObjectResult;
 
             Assert.IsNotNull(result);
             Assert.AreEqual(sampleDetailsVm, result.Value);
@@ -78,7 +203,7 @@ namespace LoanCalculator.Web.Tests
                 {
                     ArrangmentFee = 20,
                     CompletionFee = 88,
-                    DeliveryDate = new DateTime(2020, 01, 30),
+                    DeliveryDate = DateTime.Now,
                     FullPrice = 10000,
                     Deposit = 5000,
                     LoanLenght = 2
@@ -89,7 +214,7 @@ namespace LoanCalculator.Web.Tests
                     new PaymentScheduleItem
                     {
                         PaymentAmount = 2520,
-                        PaymentDate = new DateTime(2020, 2, 6)
+                        PaymentDate = DateTime.Now.AddMonths(1)
                     }
                 }
             };
@@ -104,7 +229,7 @@ namespace LoanCalculator.Web.Tests
                 {
                     ArrangmentFee = 20,
                     CompletionFee = 88,
-                    DeliveryDate = new DateTime(2020, 01, 30),
+                    DeliveryDate = DateTime.Now,
                     FullPrice = 10000,
                     Deposit = 5000,
                     LoanLenght = 2
@@ -115,7 +240,7 @@ namespace LoanCalculator.Web.Tests
                     new PaymentScheduleItemVm
                     {
                         PaymentAmount = 2520,
-                        PaymentDate = new DateTime(2020, 2, 6)
+                        PaymentDate = DateTime.Now.AddMonths(1)
                     }
                 }
             };
