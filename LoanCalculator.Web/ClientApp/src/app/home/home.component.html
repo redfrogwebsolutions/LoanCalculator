@@ -10,15 +10,16 @@
     <div class="form-group">
       <label>Deposit</label>
       <input type="number" class="form-control" formControlName="deposit">
-      <div *ngIf="loanSummaryForm.hasError('depositToLow')" class="text-danger">
-        <h6>Deposit too low (min 15% of vehicle price)!</h6>
+      <div *ngIf="loanSummaryForm.hasError('depositToLowOrTooHigh')" class="text-danger">
+        <h6>Deposit must be min 15% of vehicle price and less than vehicle price!</h6>
       </div>
+     
     </div>
 
     <div class="form-group row">
       <label for="deliveryDate" class="col-2 col-form-label">DeliveryDate</label>
       <div class="col-10">
-        <input class="form-control" type="date" formControlName="deliveryDate">
+        <input class="form-control" type="date" min="{{minDate}}" formControlName="deliveryDate">
       </div>
     </div>
     <div class="form-group">

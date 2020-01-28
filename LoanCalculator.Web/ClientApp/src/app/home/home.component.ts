@@ -14,6 +14,7 @@ export class HomeComponent {
 
     loanSummaryForm: FormGroup;
     loanDetails: LoanDetails;
+    minDate: Date;
 
 
 
@@ -40,14 +41,19 @@ export class HomeComponent {
             {
                 validator: this.minDepositValidator
             });
+
+        this.minDate = new Date();
     }
 
     minDepositValidator(form: FormGroup) {
 
-        const condition = (form.get('deposit').value < (form.get('fullPrice').value * 0.15)) && form.get('deposit').dirty;
-        return condition ? { depositToLow: true } : null;
+        const condition = (form.get('deposit').value < (form.get('fullPrice').value * 0.15)) || (form.get('deposit').value > (form.get('fullPrice').value )) && form.get('deposit').dirty;
+        return condition ? { depositToLowOrTooHigh: true } : null;
 
     }
+
+   
+
     async calculateLoan() {
         if (!this.loanSummaryForm.invalid) {
             let summary = <LoanSummary>this.loanSummaryForm.value;
